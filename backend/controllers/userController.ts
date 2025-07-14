@@ -44,7 +44,7 @@ const getLeaderboard = async (): Promise<LeaderboardEntry[]> => {
 // @desc   Get all users (leaderboard)
 // @route  GET /api/users
 // @access Public
-export const getUser = async (_req: Request, res: Response) => {
+export const getUsers = async (_req: Request, res: Response) => {
   try {
     const leaderboard: LeaderboardEntry[] = await getLeaderboard();
     res.json(leaderboard);

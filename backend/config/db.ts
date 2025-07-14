@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Function to connect to MongoDB
-const connectDB = async (): Promise<void> => {
+export const connectDB = async (): Promise<void> => {
   try {
     // Attempt to connect to the MongoDB database using the URI from environment variables
     await mongoose.connect(process.env.MONGO_URL!);

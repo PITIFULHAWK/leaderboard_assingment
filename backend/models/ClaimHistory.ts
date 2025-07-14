@@ -27,5 +27,5 @@ const ClaimHistorySchema: Schema = new Schema({
 // Create and export ClaimHistory model based on the schema
 export default mongoose.model<IClaimHistory>(
   "ClaimHistory",
-  ClaimHistorySchema,
+  ClaimHistorySchema
 );
