@@ -1,0 +1,27 @@
+{
+  "name": "leaderboard_backend",
+  "version": "1.0.0",
+  "description": "Node.js backend for a dynamic leaderboard application",
+  "license": "ISC",
+  "author": "PITIFULHAWK",
+  "type": "commonjs",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "dev": "nodemon --exec ts-node server.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.23",
+    "@types/node": "^20.19.7",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
