@@ -21,9 +21,15 @@ router.post("/users", addUser);
 // @desc    Claim random points for a user
 router.post("/claimPoints", claimPoints);
 
-// @route   GET /api/claimHistory/:userId?
-// @desc    Get claim history for a specific user or all history
-router.get("/claimHistory/:userId?", getClaimHistory);
+
+// @route   GET /api/claimHistory
+// @desc    Get all claim history
+router.get('/claimHistory', getClaimHistory);
+
+// @route   GET /api/claimHistory/:userId
+// @desc    Get claim history for a specific user
+router.get('/claimHistory/:userId', getClaimHistory);
+;
 
 // @route   POST /api/seedUsers
 // @desc    Seed initial users if the collection is empty (for development)

@@ -61,11 +61,6 @@ export const addUser = async (req: Request, res: Response) => {
   const { name, avatar } = req.body;
 
   if (!name) {
-    // if (!avatar) {
-    //   return res
-    //     .status(400)
-    //     .json({ msg: "Please select a avatar from the given defaultAvatars." });
-    // }
     return res.status(400).json({ msg: "Please enter a user name." });
   }
 
@@ -121,8 +116,6 @@ export const claimPoints = async (req: Request, res: Response) => {
     });
     await claimedHistory.save();
 
-    const leaderboard: LeaderboardEntry[] = await getLeaderboard();
-
     res.status(201).json({
       msg: `Successfully claimed ${pointsClaimed} points for ${user.name}`,
       user: {
@@ -131,7 +124,6 @@ export const claimPoints = async (req: Request, res: Response) => {
         totalPoints: user.totalPoints,
       },
       pointsClaimed,
-      leaderboard,
     });
   } catch (error: any) {
     console.error(error.message);
@@ -149,12 +141,22 @@ export const getClaimHistory = async (req: Request, res: Response) => {
 
     if (userId) {
       history = (await ClaimHistory.find({ userId })
-        .populate("userId", "name")
-        .sort({ claimedAt: -1 })) as IClaimHistory[];
+        .populate({
+          path: "userId",
+          model: "User",
+          select: "name avatar",
+          strictPopulate: false,
+        }) // Added model and avatar select
+        .sort({ claimedAt: 1 })) as IClaimHistory[];
     } else {
       history = (await ClaimHistory.find()
-        .populate("userId", "name")
-        .sort({ claimedAt: -1 })) as IClaimHistory[];
+        .populate({
+          path: "userId",
+          model: "User",
+          select: "name avatar",
+          strictPopulate: false,
+        }) // Added model and avatar select
+        .sort({ claimedAt: 1 })) as IClaimHistory[];
     }
     res.json(history);
   } catch (error: any) {

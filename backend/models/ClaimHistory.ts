@@ -1,15 +1,16 @@
 import mongoose, { Document, Schema } from "../config/db";
+import { IUser } from "./User";
 
 // Define an interface for ClaimHistory Document
 export interface IClaimHistory extends Document {
-  userId: mongoose.Types.ObjectId;
+  userId: mongoose.Types.ObjectId | IUser;
   pointsClaimed: number;
   claimedAt: Date;
 }
 
 // Define the schema for the ClaimHistory model
 const ClaimHistorySchema: Schema = new Schema({
-  userID: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     require: true,
